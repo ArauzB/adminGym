@@ -1,1 +1,106 @@
-<p>citas works!</p>
+<div class="flex flex-col min-h-full px-6 py-12 lg:px-8">
+    <h2 class="text-2xl font-bold leading-7 text-gray-900">Citas</h2>
+
+ 
+  
+    <div class="mt-8">
+
+        <div class="flex flex-col min-h-full px-6 py-12 lg:px-8">
+            <h2 class="text-2xl font-bold leading-7 text-gray-900">Agregar Cita</h2>
+            
+            <form  [formGroup]="citaForm" (ngSubmit)="crearCita()"  class="mt-8 space-y-6">
+              <div class="rounded-md shadow-sm -space-y-px">
+                <div>
+                  <label for="fecha" class="sr-only">Fecha</label>
+                  <input id="fecha" formControlName="fecha" type="date"  [(ngModel)]="citasData.fecha" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Fecha">
+                </div>
+                <div>
+                  <label for="hora" class="sr-only">Hora</label>
+                  <input id="hora" formControlName="hora" type="time"  [(ngModel)]="citasData.hora"  required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Hora">
+                </div>
+                <div>
+                  <label for="duracionMinutos" class="sr-only">Duración</label>
+                  <input id="duracionMinutos" formControlName="duracionMinutos" type="number" [(ngModel)]="citasData.duracionMinutos"  required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Duración (minutos)">
+                </div>
+                <div>
+                  <label for="tipoCita" class="sr-only">Tipo de Cita</label>
+                  <input id="tipoCita" formControlName="tipoCita" type="text" [(ngModel)]="citasData.tipoCita"  required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Tipo de Cita">
+                </div>
+                <div>
+                    <label for="clienteId" class="sr-only">Cliente</label>
+                    <select id="clienteId" formControlName="clienteId" required [(ngModel)]="citasData.clienteId"  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                      <option value="" disabled selected>Selecciona un cliente</option>
+                      @for(cliente of clientes;track cliente){
+                        <option [value]="cliente.ID">{{ cliente.NOMBRE }}</option>
+                      }
+                    </select>
+                  </div>
+        
+              </div>
+          
+              <div>
+                <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  Guardar Cita
+                </button>
+              </div>
+            </form>
+          </div>
+      
+          
+      @if (citas.length > 0) {
+        @for (cita of citas; track cita){
+          <div class="bg-white rounded-md shadow-sm p-4 mb-4">
+            <h4 class="text-base font-medium leading-5 text-gray-900">Cita ID: {{ cita.CITA_ID }}</h4>
+            <div class="flex items-center mt-2">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M12 3v10h-2v-4h2m2-4v10h-2v-4h2" />
+              </svg>
+              <span class="ml-2 text-sm text-gray-500">Fecha: {{ cita.FECHA }}</span>
+            </div>
+            <div class="flex items-center mt-2">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M19 3h-14c-1.5 0-3 1.5-3 3v10c0 1.5 1.5 3 3 3h14c1.5 0 3-1.5 3-3v-10c0-1.5-1.5-3-3-3z" />
+                <path d="M12 17v-4l-3 3" />
+              </svg>
+              <span class="ml-2 text-sm text-gray-500">Hora: {{ cita.HORA }}</span>
+            </div>
+            <div class="flex items-center mt-2">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M12 17v-4l-3 3" />
+              </svg>
+              <span class="ml-2 text-sm text-gray-500">Duración: {{ cita.DURACION_MINUTOS }} minutos</span>
+            </div>
+            <div class="flex items-center mt-2">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M19 3h-14c-1.5 0-3 1.5-3 3v10c0 1.5 1.5 3 3 3h14c1.5 0 3-1.5 3-3v-10c0-1.5-1.5-3-3-3z" />
+                <path d="M12 17v-4l-3 3" />
+              </svg>
+              <span class="ml-2 text-sm text-gray-500">Tipo de Cita: {{ cita.TIPO_CITA }}</span>
+            </div>
+            <div class="flex items-center mt-2">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M12 17v-4l-3 3" />
+              </svg>
+              <span class="ml-2 text-sm text-gray-500">Cliente: {{ cita.CLIENTE_NOMBRE }}</span>
+            </div>
+            <div class="flex items-center mt-2">
+              <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path d="M12 17v-4l-3 3" />
+              </svg>
+              <span class="ml-2 text-sm text-gray-500">Instructor: {{ cita.INSTRUCTOR_NOMBRE }} {{ cita.INSTRUCTOR_APELLIDO }}</span>
+            </div>
+          </div>
+        }
+      } @else {
+        <div class="bg-white rounded-md shadow-sm p-4" >
+          <p class="text-gray-500 mt-4">No tienes citas próximas.</p>
+        </div>
+      }
+  
+  
+  
+  
+  
+    </div>
+  </div>
+  
