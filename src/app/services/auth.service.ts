@@ -14,6 +14,7 @@ export class AuthService {
   private readonly CREATEUSER = `${this.BASE_URL}/empleado/createEmpleado`;
   private readonly VERIFICAR = `${this.BASE_URL}/cliente/verificarCodigo`;
   private readonly GETCLIENTES = `${this.BASE_URL}/cliente/cliente`;
+  private readonly GETEMPLEADO = `${this.BASE_URL}/empleado/getEmpleado`;
 
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
@@ -35,6 +36,11 @@ export class AuthService {
   getCLiente(): Observable<any> {
     return this.http.get<any>(this.GETCLIENTES);
   }
+
+  getEmpleado(token:any): Observable<any> {
+    return this.http.post<any>(this.GETEMPLEADO, {token:token});
+  }
+
 
   verificar(verificarData: any): Observable<any> {
     return this.http.post<any>(this.VERIFICAR, verificarData);

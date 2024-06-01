@@ -7,6 +7,8 @@ import { RegisterComponent } from './component/register/register.component';
 import { CitasComponent } from './component/citas/citas.component';
 import { authGuard } from './guards/auth.guard';
 import { VerificarComponent } from './component/verificar/verificar.component';
+import { PerfilComponent } from './component/perfil/perfil.component';
+import { OrdenesComponent } from './component/ordenes/ordenes.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent,canActivate: [authGuard] },
@@ -15,6 +17,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'citas', component: CitasComponent,canActivate: [authGuard] },
   { path: 'verificar', component: VerificarComponent,canActivate: [authGuard] },
+  { path: 'perfil', component: PerfilComponent,canActivate: [authGuard] },
+  { path: 'ordenes', component: OrdenesComponent,canActivate: [authGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent ,canActivate: [authGuard] }
 ];
