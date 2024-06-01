@@ -1,20 +1,17 @@
 <div class="flex flex-col min-h-full px-6 py-12 lg:px-8">
     <h2 class="text-2xl font-bold leading-7 text-gray-900">Órdenes</h2>
-    
+
     <div class="mt-8 space-y-6">
-      <div *ngFor="let orden of ordenes" class="bg-white rounded-md shadow-sm p-6">
+
         <h4 class="text-base font-medium leading-5 text-gray-900">Orden ID: {{ orden.ordenId }}</h4>
         <p class="mt-2 text-sm text-gray-500">Fecha: {{ orden.fecha  }}</p>
         <p class="mt-2 text-sm text-gray-500">Total: {{ orden.total }}</p>
         <p class="mt-2 text-sm text-gray-500">Cliente: {{ orden.clienteNombre }}</p>
-        
+
         <h5 class="text-base font-medium leading-5 text-gray-900 mt-4">Detalles</h5>
-        <div *ngFor="let detalle of orden.detalles" class="mt-2 text-sm text-gray-500">
+
           <p>Membresía ID: {{ detalle.membresiaId }}</p>
           <p>Cantidad: {{ detalle.cantidad }}</p>
           <p>Precio Unitario: {{ detalle.precioUnitario }}</p>
         </div>
       </div>
-    </div>
-  </div>
-  
